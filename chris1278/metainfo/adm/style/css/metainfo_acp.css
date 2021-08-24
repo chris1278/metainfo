@@ -1,0 +1,29 @@
+/**
+*
+* @package phpBB Extension - Metainfo by Chris1278
+* @copyright (c) 2021 (christian-esch.de.de)
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+.metainfo-page-title, .metainfo-info-page-title {
+	font-size: 2.4em;
+}
+
+.metainfo-set-title {
+	font-size: 1.4em;
+	font-style: italic;
+	text-align:center;
+	color: #bf1b1b;
+	line-height: 1.2em;
+}
+
+fieldset {
+	border-radius: 10px;
+}
+
+.metainfo_acp_copyright {
+	margin-top: 1em;
+	text-align: center;
+	font-size: .75em;
+}

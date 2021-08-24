@@ -1,0 +1,8 @@
+services:
+    chris1278.metainfo.listener:
+        class: chris1278\metainfo\event\listener
+        arguments:
+            - '@config'
+            - '@template'            
+        tags:
+            - {name: event.listener}
