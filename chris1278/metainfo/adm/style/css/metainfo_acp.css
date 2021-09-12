@@ -6,6 +6,27 @@
 *
 */
 
+.mt-overview {
+	margin-top: 5px;
+}
+
+.ov-th1 {
+	width: 25%;
+}
+
+.ov-th2 {
+	width: 25%;
+}
+
+.ov-th3 {
+	width: 35%;
+}
+
+.ov-th4 {
+	width: 15%;
+}
+
+
 .metainfo-page-title, .metainfo-info-page-title {
 	font-size: 2.4em;
 }
@@ -26,4 +47,36 @@ fieldset {
 	margin-top: 1em;
 	text-align: center;
 	font-size: .75em;
+}
+
+.meta_dd {
+	color: #bf1b1b;
+	background-color: #FE9A2E;
+	padding: 5px;
+	font-size: 1.5em;
+}
+
+.overview-info {
+	padding: 5px;
+	border-radius: 10px;
+}
+
+.instruction-box, .overview-info {
+	background-color: #D8D8D8;
+}
+
+.meta-mark {
+	color: #FE9A2E;
+}
+
+.acp-warn {
+	color: #ff0000;
+}
+
+.acp-green {
+	color: #088A29;
+}
+
+.acp-ov-col {
+	color: #da532c;
 }

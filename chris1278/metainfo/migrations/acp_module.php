@@ -28,7 +28,16 @@ class acp_module extends \phpbb\db\migration\migration
 			['module.add', [
 				'acp',
 				'ACP_METAINFO', [
-					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_module',
+					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_overview',
+					'module_langname'	=> 'ACP_METAINFO_OVERVIEW',
+					'module_mode'		=> 'overview',
+					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',
+				]
+			]],
+			['module.add', [
+				'acp',
+				'ACP_METAINFO', [
+					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_settings',
 					'module_langname'	=> 'ACP_METAINFO_SETTINGS',
 					'module_mode'		=> 'overview',
 					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',
@@ -37,7 +46,7 @@ class acp_module extends \phpbb\db\migration\migration
 		];
 	}
 
-	public function revert_schema()
+	public function revert_data()
 	{
 		return [
 			['module.remove', [
@@ -48,7 +57,16 @@ class acp_module extends \phpbb\db\migration\migration
 			['module.remove', [
 				'acp',
 				'ACP_METAINFO', [
-					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_module',
+					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_overview',
+					'module_langname'	=> 'ACP_METAINFO_OVERVIEW',
+					'module_mode'		=> 'overview',
+					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',
+				]
+			]],
+			['module.remove', [
+				'acp',
+				'ACP_METAINFO', [
+					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_settings',
 					'module_langname'	=> 'ACP_METAINFO_SETTINGS',
 					'module_mode'		=> 'overview',
 					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',

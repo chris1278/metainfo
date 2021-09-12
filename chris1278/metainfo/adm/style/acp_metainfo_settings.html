@@ -4,82 +4,114 @@
 <a id="maincontent"></a>
 
 	<h1 class="metainfo-page-title">{{ lang('ACP_METAINFO_PAGE_TITLE') }}	</h1>
-	<p>{{ lang('METAINFO_CONFIG_DESC', METAINFO_EXT_NAME, METAINFO_EXT_VER) }} {{ lang('ACP_METAINFO_PAGE_TITLE_EXPLAIN') }}</p>
+	<p>{{ lang('METAINFO_CONFIG_DESC', METAINFO_EXT_NAME, METAINFO_EXT_VER) ~ lang('ACP_METAINFO_PAGE_TITLE_EXPLAIN') }}</p>
 	<br>
 	<dl class="metainfo-set-title">{{ lang('ACP_METAINFO_SET_TITLE') }}</dl>
+	<br>
 	<form id="acp_metainfo" method="post" action="{{ U_ACTION }}">
 	<fieldset>
+		<legend>{{ lang('META_DATA') }}</legend>
 		<dl>
-			<dt><label for="mt_change">{{ lang('MT_CHANGE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('MT_CHANGE_EXPLAIN') }}</span></dt>
+			<dt><label for="mt_change">{{ lang('MT_CHANGE') ~ lang('COLON') }}</label><br /><span>{{ lang('MT_CHANGE_EXPLAIN') }}</span></dt>
 			<dd>
 				<label><input type="radio" class="radio" name="mt_change" value="1"{% if MT_CHANGE %} id="mt_change" checked="checked"{% endif %} /> {{ lang('META_TITLE') }}</label>
 				<label><input type="radio" class="radio" name="mt_change" value="0"{% if not MT_CHANGE %} id="mt_change" checked="checked"{% endif %} /> {{ lang('BOARD_NAME') }}</label>
 			</dd>
 		</dl>
+		{% if MT_CHANGE %}
 		<dl>
-			<dt><label for="meta_title">{{ lang('META_TITLE') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_TITLE_EXPLAIN') }}</span></dt>
-			<dd><input type="text" name="meta_title" id="meta_title" maxlength="65" size="40" value="{{ META_TITLE }}"/></dd>
+			<dt><label for="meta_title">{{ lang('META_TITLE') ~ lang('COLON') }}</label><br><span>{{ lang('META_TITLE_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="meta_title" id="meta_title" maxlength="65" size="40" value="{{ META_TITLE }}" placeholder="{{ lang('MT_TITLE') }}"/></dd>
 		</dl>
+		{% else %}
 		<dl>
-			<dt><label for="board_name">{{ lang('BOARD_NAME') }}{{ lang('COLON') }}</label><br><span>{{ lang('BOARD_NAME_EXPLAIN') }}</span></dt>
+			<dt><label>{{ lang('BOARD_NAME') ~ lang('COLON') }}</label><br><span>{{ lang('BOARD_NAME_EXPLAIN') }}<br><br>{{ lang('BOARD_NAME_CHANGE1') }} <br><br><a href="{U_BORD_META}">{{ lang('BOARD_NAME_CHANGE2') }}</a> <br><br>{{ lang('BOARD_NAME_CHANGE3') }}</span></dt>
 			<dd>{{ SITENAME }}</dd>
 		</dl>
-		
+		{% endif %}
 		<dl>
-			<dt><label for="meta_description">{{ lang('META_DESCRIPTION') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_DESCRIPTION_EXPLAIN') }}</span></dt>
-			<dd><textarea type="text" name="meta_description" id="meta_description" maxlength="160" size="40" value="{{ META_DESCRIPTION }}"/>{{ META_DESCRIPTION }}</textarea></dd>
+			<dt><label for="meta_description">{{ lang('META_DESCRIPTION') ~ lang('COLON') }}</label><br><span>{{ lang('META_DESCRIPTION_EXPLAIN') }}</span></dt>
+			<dd><textarea type="text" name="meta_description" id="meta_description" maxlength="160" size="40" value="{{ META_DESCRIPTION }}" placeholder="{{ lang('MT_DESCRIPTION') }}">{{ META_DESCRIPTION }}</textarea></dd>
 		</dl>
 		<dl>
-			<dt><label for="meta_keywords">{{ lang('META_KEYWORDS') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_KEYWORDS_EXPLAIN') }}</span></dt>
-			<dd><textarea type="text" name="meta_keywords" id="meta_keywords" maxlength="255" size="40" value="{{ META_KEYWORDS }}"/>{{ META_KEYWORDS }}</textarea></dd>
+			<dt><label for="meta_keywords">{{ lang('META_KEYWORDS') ~ lang('COLON') }}</label><br><span>{{ lang('META_KEYWORDS_EXPLAIN') }}</span></dt>
+			<dd><textarea type="text" name="meta_keywords" id="meta_keywords" maxlength="255" size="40" value="{{ META_KEYWORDS }}" placeholder="{{ lang('MT_KEYWORDS') }}">{{ META_KEYWORDS }}</textarea></dd>
 		</dl>
+		</fieldset>
+		<fieldset>
+		<legend>{{ lang('META_GOOGLE_SITE_VERIFICATION_ENABLE') }}</legend>
 		<dl>
-			<dt><label for="meta_google_site_verification">{{ lang('META_GOOGLE_SITE_VERIFICATION') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_GOOGLE_SITE_VERIFICATION_EXPLAIN') }}</span></dt>
-			<dd><input type="text" name="meta_google_site_verification" id="meta_google_site_verification" maxlength="255" size="40" value="{{ META_GOOGLE_SITE_VERIFICATION }}"/></dd>
+			<dt><label for="meta_google_site_verification_enable">{{ lang('META_GOOGLE_SITE_VERIFICATION_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('META_GOOGLE_SITE_VERIFICATION_ENABLE_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="meta_google_site_verification_enable" value="1"{% if META_GOOGLE_SITE_VERIFICATION_ENABLE %} id="meta_google_site_verification_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="meta_google_site_verification_enable" value="0"{% if not META_GOOGLE_SITE_VERIFICATION_ENABLE %} id="meta_google_site_verification_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
 		</dl>
+		{% if META_GOOGLE_SITE_VERIFICATION_ENABLE %}
+		<dl>
+			<dt><label for="meta_google_site_verification">{{ lang('META_GOOGLE_SITE_VERIFICATION') ~ lang('COLON') }}</label><br><span>{{ lang('META_GOOGLE_SITE_VERIFICATION_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="meta_google_site_verification" id="meta_google_site_verification" maxlength="255" size="40" value="{{ META_GOOGLE_SITE_VERIFICATION }}" placeholder="{{ lang('MT_GOOGLE_SITE_VERIFICATION') }}" /></dd>
+		</dl>
+		{% endif %}
 	</fieldset>
-	
 	<fieldset>
+	<legend>{{ lang('OG_DATA') }}</legend>
 		<dl>
-			<dt><label for="meta_open_graph_enable">{{ lang('META_OPEN_GRAPH_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('META_OPEN_GRAPH_ENABLE_EXPLAIN') }}</span></dt>
+			<dt><label for="meta_open_graph_enable">{{ lang('META_OPEN_GRAPH_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('META_OPEN_GRAPH_ENABLE_EXPLAIN') }}</span></dt>
 			<dd>
 				<label><input type="radio" class="radio" name="meta_open_graph_enable" value="1"{% if META_OPEN_GRAPH_ENABLE %} id="meta_open_graph_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
 				<label><input type="radio" class="radio" name="meta_open_graph_enable" value="0"{% if not META_OPEN_GRAPH_ENABLE %} id="meta_open_graph_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
+		{% if META_OPEN_GRAPH_ENABLE %}
 		<dl>
-			<dt><label for="meta_og_description">{{ lang('META_OG_DESCRIPTION') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_OG_DESCRIPTION_EXPLAIN') }}</span></dt>
-			<dd><textarea type="text" name="meta_og_description" id="meta_og_description" maxlength="160" size="40" value="{{ META_OG_DESCRIPTION }}"/>{{ META_OG_DESCRIPTION }}</textarea></dd>
+			<dt><label for="meta_og_url">{{ lang('META_OG_URL') ~ lang('COLON') }}</label><br /><span>{{ lang('META_OG_URL_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="meta_og_url" value="1"{% if META_OG_URL %} id="meta_og_url" checked="checked"{% endif %} /> {{ lang('META_OG_URL_MAN') }}</label>
+				<label><input type="radio" class="radio" name="meta_og_url" value="0"{% if not META_OG_URL %} id="meta_og_url" checked="checked"{% endif %} /> {{ lang('META_OG_URL_DYN') }}</label>
+			</dd>
 		</dl>
 		<dl>
-			<dt><label for="meta_og_locale">{{ lang('META_OG_LOCALE') }}{{ lang('COLON') }}</label><br><span>{{ lang('META_OG_LOCALE_EXPLAIN') }}</span></dt>
-			<dd><input type="text" name="meta_og_locale" id="meta_og_locale" maxlength="15" size="20" value="{{ META_OG_LOCALE }}"/></dd>
+			<dt><label for="meta_og_description">{{ lang('META_OG_DESCRIPTION') ~ lang('COLON') }}</label><br><span>{{ lang('META_OG_DESCRIPTION_EXPLAIN') }}</span></dt>
+			<dd><textarea type="text" name="meta_og_description" id="meta_og_description" maxlength="160" size="40" value="{{ META_OG_DESCRIPTION }}" placeholder="{{ lang('OG_DESCRIPTION') }}">{{ META_OG_DESCRIPTION }}</textarea></dd>
 		</dl>
+		<dl>
+			<dt><label for="meta_og_locale">{{ lang('META_OG_LOCALE') ~ lang('COLON') }}</label><br><span>{{ lang('META_OG_LOCALE_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="meta_og_locale" id="meta_og_locale" maxlength="15" size="20" value="{{ META_OG_LOCALE }}" placeholder=" {{ lang('OG_LOCALE') }}"/></dd>
+		</dl>
+		<dl>
+			<dt><label for="fa_appid_enable">{{ lang('FA_APPID_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('FA_APPID_ENABLE_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="fa_appid_enable" value="1"{% if FA_APPID_ENABLE %} id="fa_appid_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="fa_appid_enable" value="0"{% if not FA_APPID_ENABLE %} id="fa_appid_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		{% if FA_APPID_ENABLE %}
+		<dl>
+			<dt><label for="fa_appid">{{ lang('FA_APPID') ~ lang('COLON') }}</label><br><span>{{ lang('FA_APPID_EXPLAIN') }}</span></dt>
+			<dd><input type="text" name="fa_appid" id="meta_title" maxlength="65" size="40" value="{{ FA_APPID }}" placeholder="{{ lang('FA_APPID') }}" /></dd>
+		</dl>
+		{% endif %}
+		{% endif %}
 	</fieldset>
-	
 	<fieldset>
+	<legend>{{ lang('FAVIC') }}</legend>	
 		<dl>
-			<dt><label for="favicon_enable">{{ lang('FAVICON_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('FAVICON_ENABLE_EXPLAIN') }}</span></dt>
+			<dt><label for="favicon_enable">{{ lang('FAVICON_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('FAVICON_ENABLE_EXPLAIN') }}</span></dt>
 			<dd>
 				<label><input type="radio" class="radio" name="favicon_enable" value="1"{% if FAVICON_ENABLE %} id="favicon_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
 				<label><input type="radio" class="radio" name="favicon_enable" value="0"{% if not FAVICON_ENABLE %} id="favicon_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
 			</dd>
 		</dl>
 	</fieldset>
-	<fieldset>
-	{{ lang('FAVICON_INFORMATION') }}
-	</fieldset>
-	
 	<p class="submit-buttons">
 		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
 		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />
 	</p>
-	
 	<p class="metainfo_acp_copyright">
 		{{ METAINFO_EXT_NAME }} &copy; Chris1278<br />
 		{{ lang('METAINFO_LANG_DESC') }} {{ lang('METAINFO_LANG_EXT_VER') }} &bull; {{ lang('METAINFO_LANG_AUTHOR') }}
 	</p>
-
 	{S_FORM_TOKEN}
 </form>
 {% INCLUDE 'overall_footer.html' %}

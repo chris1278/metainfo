@@ -14,7 +14,19 @@ class metainfo_info
 	function module()
 	{
 		return [
-			'filename'	=> '\chris1278\metainfo\acp\metainfo_module',
+			'filename'	=> '\chris1278\metainfo\acp\metainfo_overview',
+			'title'		=> 'ACP_METAINFO',
+			'version'	=> '1.0.0',
+			'modes'		=> [
+				'settings'		=> [
+					'title'		=> 'ACP_METAINFO_OVERVIEW',
+					'auth'		=> 'ext_chris1278/metainfo && acl_a_board',
+					'cat'		=> ['ACP_METAINFO'],
+				],
+			],
+		];
+		return [
+			'filename'	=> '\chris1278\metainfo\acp\metainfo_settings',
 			'title'		=> 'ACP_METAINFO',
 			'version'	=> '1.0.0',
 			'modes'		=> [

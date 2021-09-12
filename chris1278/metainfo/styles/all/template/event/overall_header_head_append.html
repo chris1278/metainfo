@@ -1,14 +1,13 @@
 <title>{% if MT_CHANGE %}{{ META_TITLE }} {% else %} {{ SITENAME }} {% endif %}</title>
 <meta name="description" content="{{ META_DESCRIPTION }}" />
 <meta name="keywords" content="{{ META_KEYWORDS }}" />
+{% if META_GOOGLE_SITE_VERIFICATION_ENABLE %}
 <meta name="google-site-verification" content="{{ META_GOOGLE_SITE_VERIFICATION }}" />
-
+{% endif %}
 {% if FAVICON_ENABLE %}
-<link rel="apple-touch-icon" sizes="180x180" href="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png">
 <link rel="mask-icon" href="{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg" color="#5bbad5">
 <link rel="shortcut icon" href="{{ T_EXT_FAVICON_PATH }}/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png">
 <meta name="msapplication-TileImage" content="{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png">
@@ -17,14 +16,16 @@
 <meta name="msapplication-config" content="{{ T_EXT_FAVINFO_PATH }}/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 {% endif %}
-
 {% if META_OPEN_GRAPH_ENABLE %}
 <meta property="og:locale" content="{{ META_OG_LOCALE }}" />
 <meta property="og:type" content="website" />
 <meta property="og:description" content="{{ META_OG_DESCRIPTION }}" />
-<meta property="og:title" content="{{ SITENAME }} - {{ PAGE_TITLE }}" />
-<meta property="og:url" content="{{ BOARD_URL }}" />
+<meta property="og:title" content="{{ PAGE_TITLE }}" />
+<meta property="og:url" content="{% if META_OG_URL %} {{ BOARD_URL }}index.php {% else %} {% if SCRIPT_NAME == 'index' %} {{ BOARD_URL }}index.php {% else %} {{ U_CANONICAL }} {% endif %} {% endif %}" />
 <meta property="og:site_name" content="{{ SITENAME }}" />
-<meta property="og:image" content="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.png" />
+<meta property="og:image" content="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg" />
+{% if FA_APPID_ENABLE %}
+<meta property="fb:app_id" content="{{ FA_APPID }}"/>
+{% endif %}
 {% endif %}
 
