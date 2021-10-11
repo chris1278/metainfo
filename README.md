@@ -1,6 +1,7 @@
 #### Attention! Important hint:
 
-This time with the update, please proceed as follows:
+* This time with the update, please proceed as follows:
+	*gggg
 
 Please save old settings externally. Then delete the old extensiuon completely and also delete the work data.
 
