@@ -19,12 +19,12 @@ class v_1_0_1 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return [
-			['config.add', ['meta_google_site_verification_enable', '0']],
-			['config.add', ['meta_og_url', '1']],
-			['config.add', ['fa_appid_enable', '0']],
-			['config.add', ['fa_appid', '']],
-			['config.add', ['ov_fav_enable', '0']],
-			['config.add', ['ov_google_site_verification_instruction', '0']],
+			['config.add'	, ['meta_google_site_verification_enable', '0']],
+			['config.add'	, ['meta_og_url', '1']],
+			['config.add'	, ['fa_appid_enable', '0']],
+			['config.add'	, ['fa_appid', '']],
+			['config.add'	, ['ov_fav_enable', '0']],
+			['config.add'	, ['ov_google_site_verification_instruction', '0']],
 			['config.remove', ['metainfo_version']],
 		];
 	}

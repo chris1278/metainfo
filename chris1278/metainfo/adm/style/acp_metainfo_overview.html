@@ -2,9 +2,10 @@
 {% INCLUDE 'overall_header.html' %}
 
 <a id="maincontent"></a>
-	<h1 class="metainfo-page-title">{{ lang('ACP_METAINFO_OVERVIEW_PAGE') }}	</h1>
+	<h1 class="metainfo-page-title">{{ lang('ACP_METAINFO_PAGE_TITLE') }}	</h1>
 	<p>{{ lang('METAINFO_OVERVIEW_DESC', METAINFO_EXT_NAME, METAINFO_EXT_VER) }}</p>
-<br>
+	<br>
+	<p class="metainfo-set-title">{{ lang('ACP_CMI_OVERVIEW') }}</p>
 	{% if METAINFO_NOTES %}
 	<div class="errorbox notice">
 		{{ METAINFO_NOTES }}
@@ -12,7 +13,7 @@
 	{% endif %}
 	<fieldset class="overview-info">
 	<legend>{{ lang('OV_INFO_BOX') }}</legend>
-	{{ lang('OV_INFO_BOX_EXPLAIN') }}
+		{{ lang('OV_INFO_BOX_EXPLAIN') }}
 	</fieldset>
 <table cellspacing="1">
 	<caption class="mt-overview">{{ lang('OV_META') }}</caption>
@@ -20,257 +21,216 @@
 		<col class="col1"><col class="col2">
 	</colgroup>
 	<thead>
-	<tr>
-		<th class="ov-th1">{{ lang('OV_META') }}</th>
-		<th class="ov-th2">{{ lang('OV_VALUE') }}</th>
-	</tr>
+		<tr>
+			<th class="ov-th1">{{ lang('OV_META') }}</th>
+			<th class="ov-th2">{{ lang('OV_VALUE') }}</th>
+		</tr>
 	</thead>
 	<tbody>
-	<tr>
-		<td><b>{{ lang('OV_TITLE') }}</b></td>
-		<td>{% if MT_CHANGE %}{% if META_TITLE %} <b class="meta-mark">{{ META_TITLE }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %} {% else %} <b class="meta-mark">{{ SITENAME }}</b> {% endif %}</td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_MT_DESCRIPTION') }}</b></td>
-		<td>{% if META_DESCRIPTION %}<b class="meta-mark">{{ META_DESCRIPTION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
-	</tr>
-	 <tr>
-		<td><b>{{ lang('OV_MT_KEYWORDS') }}</b></td>
-		<td>{% if META_KEYWORDS %}<b class="meta-mark">{{ META_KEYWORDS }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
-	</tr>
-	{% if META_GOOGLE_SITE_VERIFICATION_ENABLE %}
-	 <tr>
-		<td><b>{{ lang('OV_GOOGLE_SV') }}</b></td>
-		<td>{% if META_GOOGLE_SITE_VERIFICATION %}<b class="meta-mark">{{ META_GOOGLE_SITE_VERIFICATION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
-	</tr>
-	{% endif %}
+		<tr>
+			<td><b>{{ lang('OV_TITLE') }}</b></td>
+			<td><b class="meta-mark">{{ lang('ADMIN_PANEL') }}<!-- IF UNREAD_NOTIFICATIONS_COUNT -->({UNREAD_NOTIFICATIONS_COUNT}) <!-- ENDIF --><!-- IF not S_VIEWTOPIC and not S_VIEWFORUM -->{SITENAME} - <!-- ENDIF --><!-- IF S_IN_MCP -->{L_MCP} - <!-- ELSEIF S_IN_UCP -->{L_UCP} - <!-- ENDIF -->{PAGE_TITLE}<!-- IF S_VIEWTOPIC or S_VIEWFORUM --> - {SITENAME}<!-- ENDIF --></b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_MT_DESCRIPTION') }}</b></td>
+			<td>{% if CMI_META_DESCRIPTION %}<b class="meta-mark">{{ CMI_META_DESCRIPTION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
+		</tr>
+		 <tr>
+			<td><b>{{ lang('OV_MT_KEYWORDS') }}</b></td>
+			<td>{% if CMI_META_KEYWORDS %}<b class="meta-mark">{{ CMI_META_KEYWORDS }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
+		</tr>
+		{% if CMI_META_GOOGLE_SITE_VERIFICATION_ENABLE %}
+		 <tr>
+			<td><b>{{ lang('OV_GOOGLE_SV') }}</b></td>
+			<td>{% if CMI_META_GOOGLE_SITE_VERIFICATION %}<b class="meta-mark">{{ CMI_META_GOOGLE_SITE_VERIFICATION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
+		</tr>
+		{% endif %}
 	</tbody>
 </table>
-{% if META_OPEN_GRAPH_ENABLE %}
+{% if CMI_META_OPEN_GRAPH_ENABLE %}
 <table cellspacing="1">
 	<caption class="mt-overview">{{ lang('OV_OPEN_GRAPH') }}</caption>
 	<colgroup>
 		<col class="col1"><col class="col2">
 	</colgroup>
 	<thead>
-	<tr>
-		<th class="ov-th1">{{ lang('OV_OPEN_GRAPH') }}</th>
-		<th class="ov-th2">{{ lang('OV_VALUE') }}</th>
-	</tr>
+		<tr>
+			<th class="ov-th1">{{ lang('OV_OPEN_GRAPH') }}</th>
+			<th class="ov-th2">{{ lang('OV_VALUE') }}</th>
+		</tr>
 	</thead>
 	<tbody>
-	 <tr>
-		<td><b>{{ lang('OV_OG_URL') }}</b></td>
-		<td>{% if META_OG_URL %}<b class="meta-mark"> {{ ACP_BOARD_URL }}adm/index.php </b> <b class="acp-warn">{{ lang('ACP_BOARD_URL_INFO') }} </b>{% else %} <b class="meta-mark"> {{ lang('DYN_URL_INFO') }} </b> <b class="acp-warn"> {{ lang('ERROR_ACP_DYN') }} </b> {% endif %}</td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_OG_DES') }}</b></td>
-		<td>{% if META_OG_DESCRIPTION %}<b class="meta-mark">{{ META_OG_DESCRIPTION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_OG_LOC') }}</b></td>
-		<td>{% if META_OG_LOCALE %}<b class="meta-mark">{{ META_OG_LOCALE }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
-	</tr>
-	{% if FA_APPID_ENABLE %}
-	<tr>
-		<td><b>{{ lang('OV_OG_FAA') }}</b></td>
-		<td>{% if FA_APPID %}<b class="meta-mark">{{ lang('FA_APPID_INFO') }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
-	</tr>
-	{% endif %}
-	 <tr>
-		<td><b>{{ lang('OV_OG_WEB') }}</b></td>
-		<td>{{ lang('OV_OG_WEB_VALUE') }}</td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_OG_TIT') }}</b></td>
-		<td><b class="acp-green">{{ PAGE_TITLE }}</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_OG_SIT') }}</b></td>
-		<td><b class="acp-green">{{ ACP_SITENAME }}</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_OG_IMG') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_TH_FB_OG') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg"></td>
-	</tr>
+		 <tr>
+			<td><b>{{ lang('OV_OG_URL') }}</b></td>
+			<td>{% if CMI_META_OG_URL %}<b class="meta-mark">{{ U_ADM_INDEX }} </b>{% else %} <b class="meta-mark">{{ U_ADM_INDEX }}</b> {% endif %}</td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_OG_DES') }}</b></td>
+			<td>{% if CMI_META_OG_DESCRIPTION %}<b class="meta-mark">{{ CMI_META_OG_DESCRIPTION }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_OG_LOC') }}</b></td>
+			<td>{% if CMI_META_OG_LOCALE %}<b class="meta-mark">{{ CMI_META_OG_LOCALE }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b>{% endif %}</td>
+		</tr>
+		{% if CMI_FA_APPID_ENABLE %}
+		<tr>
+			<td><b>{{ lang('OV_OG_FAA') }}</b></td>
+			<td>{% if CMI_FA_APPID %}<b class="meta-mark">{{ lang('FA_APPID_INFO') }}</b>{% else %} <b class="meta-mark"> {{ lang('VARIABLE_PLACEHOLDER') }} </b> {% endif %}</td>
+		</tr>
+		{% endif %}
+		 <tr>
+			<td><b>{{ lang('OV_OG_WEB') }}</b></td>
+			<td>{{ lang('OV_OG_WEB_VALUE') }}</td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_OG_TIT') }}</b></td>
+			<td><b class="acp-green">{{ PAGE_TITLE }}</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_OG_SIT') }}</b></td>
+			<td><b class="acp-green">{{ ACP_SITENAME }}</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_OG_IMG') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_TH_FB_OG') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg"></td>
+		</tr>
 	</tbody>
 </table>
 {% else %}
 <fieldset>
-<legend>{{ lang('OV_OPEN_GRAPH') }}</legend>
-{{ lang('OV_OPEN_GRAPH_NOT_ACTIVE') }}
+	<legend>{{ lang('OV_OPEN_GRAPH') }}</legend>
+	{{ lang('OV_OPEN_GRAPH_NOT_ACTIVE') }}
 </fieldset>
 {% endif %}
-	<fieldset>
+<fieldset>
 	<legend>{{ lang('FAVIC_INFO') }}</legend>
 	{{ lang('FAVICON_INFORMATION') }}
-	</fieldset>
-{% if FAVICON_ENABLE %}
+</fieldset>
+{% if CMI_FAVICON_ENABLE %}
 <table cellspacing="1">
 	<caption class="mt-overview">{{ lang('FAVIC') }}</caption>
 	<colgroup>
 		<col class="col1"><col class="col2">
 	</colgroup>
 	<thead>
-	<tr>
-		<th class="ov-th3">{{ lang('OV_FAV') }}</th>
-		<th class="ov-th4">{{ lang('OV_VALUE') }}</th>
-	</tr>
+		<tr>
+			<th class="ov-th3">{{ lang('OV_FAV') }}</th>
+			<th class="ov-th4">{{ lang('OV_VALUE') }}</th>
+		</tr>
 	</thead>
 	<tbody>
-	 <tr>
-		<td><b>{{ lang('OV_FA_MA') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVINFO_PATH }}/site.webmanifest</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_COL') }}</b></td>
-		<td><b class="acp-ov-col">#da532c</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_MS') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVINFO_PATH }}/browserconfig.xml</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_TC') }}</b></td>
-		<td><b class="acp-green">#ffffff</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_SAF') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_FAV') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon.ico</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_APPLE') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_16_16') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_32_32') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png</b></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_FA_MSA') }}</b></td>
-		<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png</b></td>
-	</tr>
+		 <tr>
+			<td><b>{{ lang('OV_FA_MA') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVINFO_PATH }}/site.webmanifest</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_COL') }}</b></td>
+			<td><b class="acp-ov-col">#da532c</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_MS') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVINFO_PATH }}/browserconfig.xml</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_TC') }}</b></td>
+			<td><b class="acp-green">#ffffff</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_SAF') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_FAV') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon.ico</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_APPLE') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_16_16') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_32_32') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png</b></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_FA_MSA') }}</b></td>
+			<td><b class="acp-green">{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png</b></td>
+		</tr>
 	</tbody>
 </table>
 {% else %}
 <fieldset>
-<legend>{{ lang('OV_FAV') }}</legend>
-{{ lang('FAVICON_NOT_ACTIVE') }}
+	<legend>{{ lang('OV_FAV') }}</legend>
+	{{ lang('FAVICON_NOT_ACTIVE') }}
 </fieldset>
 {% endif %}
-{% if  OV_FAV_ENABLE %}
+{% if  CMI_OV_FAV_ENABLE %}
 <table cellspacing="1">
-	<caption class="mt-overview">{{ lang('OV_FAV_ENABLE') }}</caption>
+	<caption class="mt-overview">{{ lang('OV_FAV_THUMBNAIL') }}</caption>
 	<colgroup>
 		<col class="col1"><col class="col2">
 	</colgroup>
 	<thead>
-	<tr>
-		<th class="ov-th3">{{ lang('OV_FAV_ENABLE') }}</th>
-		<th class="ov-th4">{{ lang('OV_VALUE') }}</th>
-	</tr>
+		<tr>
+			<th class="ov-th3">{{ lang('OV_FAV_ENABLE') }}</th>
+			<th class="ov-th4">{{ lang('OV_VALUE') }}</th>
+		</tr>
 	</thead>
 	<tbody>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_SVG') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg"></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_ICO') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon.ico"></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_APPLE') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png"></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_16_16') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png"></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_32_32') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png"></td>
-	</tr>
-	<tr>
-		<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_MSA') }}</b></td>
-		<td><img src="{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png"></td>
-	</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_SVG') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg"></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_ICO') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon.ico"></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_APPLE') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png"></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_16_16') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png"></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_32_32') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png"></td>
+		</tr>
+		<tr>
+			<td><b>{{ lang('OV_THUMBNAIL') ~ lang('OV_OG_MSA') }}</b></td>
+			<td><img src="{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png"></td>
+		</tr>
 	</tbody>
 </table>
 {% else %}
-{% if FAVICON_ENABLE %}
+{% if CMI_FAVICON_ENABLE %}
 <fieldset>
-<legend>{{ lang('OV_FAV_THUMBNAIL') }}</legend>
-{{ lang('FAV_THUMBNAIL_NOT_ACTIVE') }}
+	<legend>{{ lang('OV_FAV_THUMBNAIL') }}</legend>
+	{{ lang('FAV_THUMBNAIL_NOT_ACTIVE') }}
 </fieldset>
 {% endif %}
 {% endif %}
 <form id="acp_metainfo" method="post" action="{{ U_ACTION }}">
-	{% if FAVICON_ENABLE %}	
+	{% if CMI_FAVICON_ENABLE %}	
 	<fieldset>
-	<legend>{{ lang('OV_FAV_ENABLE') }}</legend>
-		<dl>
-			<dt><label for="ov_fav_enable">{{ lang('OV_FAV_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('OV_FAV_ENABLE_EXPLAIN') }}</span></dt>
-			<dd>
-				<label><input type="radio" class="radio" name="ov_fav_enable" value="1"{% if OV_FAV_ENABLE %} id="ov_fav_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="ov_fav_enable" value="0"{% if not OV_FAV_ENABLE %} id="ov_fav_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
-			</dd>
-		</dl>	
+		<legend>{{ lang('OV_FAV_ENABLE') }}</legend>
+			<dl>
+				<dt><label for="cmi_ov_fav_enable">{{ lang('OV_FAV_ENABLE') ~ lang('COLON') }}</label><br /><span>{{ lang('OV_FAV_ENABLE_EXPLAIN') }}</span></dt>
+				<dd>
+					<label><input type="radio" class="radio" name="cmi_ov_fav_enable" value="1"{% if CMI_OV_FAV_ENABLE %} id="cmi_ov_fav_enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+					<label><input type="radio" class="radio" name="cmi_ov_fav_enable" value="0"{% if not CMI_OV_FAV_ENABLE %} id="cmi_ov_fav_enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				</dd>
+			</dl>	
 	</fieldset>
 	{% endif %}
-	<fieldset>
-	<legend>{{ lang('OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION') }}</legend>	
-		<dl>
-			<dt><label for="ov_google_site_verification_instruction">{{ lang('OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION') ~ lang('COLON') }}</label><br /><span>{{ lang('OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION_EXPLAIN') }}</span></dt>
-			<dd>
-				<label><input type="radio" class="radio" name="ov_google_site_verification_instruction" value="1"{% if OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION %} id="ov_google_site_verification_instruction" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="ov_google_site_verification_instruction" value="0"{% if not OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION %} id="ov_google_site_verification_instruction" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
-			</dd>
-		</dl>
-	</fieldset>
-	<!-- This code from here is for the illustrated instructions. -->
-	{% if OV_GOOGLE_SITE_VERIFICATION_INSTRUCTION %}
-	<a id="startinstruction"></a>
-	<fieldset class="instruction-box">
-	<legend>{{ lang('META_GOOGLE_SITE_VERIFICATION_INSTRUCTION') }}</legend>
-	{{ lang('G_INS_1') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole1.png" target="_blank">{{ lang('G_INS_2') }}</a>
-	{{ lang('G_INS_3') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole2.png" target="_blank">{{ lang('G_INS_4') }}</a>
-	{{ lang('G_INS_5') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole3.png" target="_blank">{{ lang('G_INS_6') }}</a>
-	{{ lang('G_INS_7') }}<a id="m1"></a> {{ lang('G_INS_8') ~ lang('G_INS_9') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole4.png" target="_blank">{{ lang('G_INS_10') }}</a>
-	{{ lang('G_INS_11') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole5.png" target="_blank">{{ lang('G_INS_12') }}</a>
-	<a id="domainentry"></a>
-	{{ lang('G_INS_13') }}<a id="copyofmetatag"></a><a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole6.png" target="_blank">{{ lang('G_INS_14') }}</a>
-	{{ lang('G_INS_15') ~ lang('G_INS_16') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole7.png" target="_blank">{{ lang('G_INS_17') }}</a>
-	<a href="#startinstruction">&laquo; {{ lang('GO_TO_BEGIN_INSTRUCTION') }}</a><br />
-	<a href="#m1">&laquo; {{ lang('GO_TO_M1') }}</a><br />
-	<a href="#m2">&laquo; {{ lang('GO_TO_M2') }}</a><br />
-	<a id="m2"></a>
-	{{ lang('G_INS_18') ~ lang('G_INS_19') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole2.png" target="_blank">{{ lang('G_INS_4') }}</a>
-	{{ lang('G_INS_20') ~ lang('G_INS_21') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole8.png" target="_blank">{{ lang('G_INS_22') }}</a>
-	{{ lang('G_INS_23') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole9.png" target="_blank">{{ lang('G_INS_24') }}</a>
-	{{ lang('G_INS_25') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole10.png" target="_blank">{{ lang('G_INS_26') }}</a>
-	{{ lang('G_INS_27') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole11.png" target="_blank">{{ lang('G_INS_28') }}</a>
-	{{ lang('G_INS_29') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole12.png" target="_blank">{{ lang('G_INS_30') }}</a>
-	{{ lang('G_INS_31') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole13.png" target="_blank">{{ lang('G_INS_32') }}</a>
-	{{ lang('G_INS_33') }}<a href="{{ T_EXT_INSTRUCTION_PATH }}/konsole14.png" target="_blank">{{ lang('G_INS_34') }}</a>
-	<a href="#startinstruction">&laquo; {{ lang('GO_TO_BEGIN_INSTRUCTION') }}</a><br />
-	<a href="#m1">&laquo; {{ lang('GO_TO_M1') }}</a><br />
-	<a href="#m2">&laquo; {{ lang('GO_TO_M2') }}</a><br />
-	</fieldset>
-	{% endif %}
-	<!-- Here is the end of the code for the illustrated guide. -->
 	<p class="submit-buttons">
 		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />&nbsp;
 		<input class="button2" type="reset" id="reset" name="reset" value="{{ lang('RESET') }}" />

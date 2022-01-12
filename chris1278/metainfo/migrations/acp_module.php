@@ -45,33 +45,4 @@ class acp_module extends \phpbb\db\migration\migration
 			]],
 		];
 	}
-
-	public function revert_data()
-	{
-		return [
-			['module.remove', [
-				'acp',
-				'ACP_CAT_DOT_MODS',
-				'ACP_METAINFO'
-			]],
-			['module.remove', [
-				'acp',
-				'ACP_METAINFO', [
-					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_overview',
-					'module_langname'	=> 'ACP_METAINFO_OVERVIEW',
-					'module_mode'		=> 'overview',
-					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',
-				]
-			]],
-			['module.remove', [
-				'acp',
-				'ACP_METAINFO', [
-					'module_basename'	=> '\chris1278\metainfo\acp\metainfo_settings',
-					'module_langname'	=> 'ACP_METAINFO_SETTINGS',
-					'module_mode'		=> 'overview',
-					'module_auth'		=> 'ext_chris1278/metainfo && acl_a_board',
-				]
-			]],
-		];
-	}
 }
