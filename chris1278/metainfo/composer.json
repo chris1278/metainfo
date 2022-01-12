@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "With this extension it is possible to make your forum SEO friendly. In the admin panel it offers some functions for controlling meta information and favicons.",
 	"homepage": "https://christian-esch.de",
-	"version": "1.0.2",
+	"version": "1.0.1",
 	"time": "2021-11-11",
 	"license": "GPL-2.0-only",
 	"authors": [
