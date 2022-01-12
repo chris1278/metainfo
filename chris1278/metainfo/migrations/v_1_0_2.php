@@ -19,35 +19,148 @@ class v_1_0_2 extends \phpbb\db\migration\migration
 	public function update_data()
 	{
 		return [
-			['config.add'	, ['cmi_mt_change', 								$this->config['mt_change']]],
-			['config.add'	, ['cmi_meta_title', 								$this->config['meta_title']]],
-			['config.add'	, ['cmi_meta_description', 							$this->config['meta_description']]],
-			['config.add'	, ['cmi_meta_keywords', 							$this->config['meta_keywords']]],
-			['config.add'	, ['cmi_meta_google_site_verification', 			$this->config['meta_google_site_verification']]],
-			['config.add'	, ['cmi_meta_open_graph_enable', 					$this->config['meta_open_graph_enable']]],
-			['config.add'	, ['cmi_meta_og_description', 						$this->config['meta_og_description']]],
-			['config.add'	, ['cmi_meta_og_locale', 							$this->config['meta_og_locale']]],
-			['config.add'	, ['cmi_favicon_enable', 							$this->config['favicon_enable']]],
-			['config.add'	, ['cmi_meta_google_site_verification_enable', 		$this->config['meta_google_site_verification_enable']]],
-			['config.add'	, ['cmi_meta_og_url', 								$this->config['meta_og_url']]],
-			['config.add'	, ['cmi_fa_appid_enable', 							$this->config['fa_appid_enable']]],
-			['config.add'	, ['cmi_fa_appid', 									$this->config['fa_appid']]],
-			['config.add'	, ['cmi_ov_fav_enable', 							$this->config['ov_fav_enable'] ]],
-			['config.remove', ['mt_change']],
-			['config.remove', ['meta_title', '']],
-			['config.remove', ['meta_description']],
-			['config.remove', ['meta_keywords']],
-			['config.remove', ['meta_google_site_verification']],
-			['config.remove', ['meta_open_graph_enable']],
-			['config.remove', ['meta_og_description']],
-			['config.remove', ['meta_og_locale']],
-			['config.remove', ['favicon_enable']],
-			['config.remove', ['meta_google_site_verification_enable']],
-			['config.remove', ['meta_og_url']],
-			['config.remove', ['fa_appid_enable']],
-			['config.remove', ['fa_appid']],
-			['config.remove', ['ov_fav_enable']],
-			['config.remove', ['ov_google_site_verification_instruction']],
+			['config.add', ['cmi_ov_fav_enable', '0']],
+			['config.add', ['cmi_ov_google_site_verification_instruction', '0']],
+			['custom', [[$this, 'import_var_change']]],
 		];
 	}
+	public function import_var_change()
+	{
+		$sql_ary = [
+			'config_name' => 'cmi_meta_title',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_title"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_mt_change',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "mt_change"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_description',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_description"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_keywords',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_keywords"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_google_site_verification',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_google_site_verification"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_google_site_verification_enable',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_google_site_verification_enable"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_open_graph_enable',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_open_graph_enable"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_og_url',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_og_url"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_og_description',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_og_description"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_meta_og_locale',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "meta_og_locale"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_fa_appid_enable',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "fa_appid_enable"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_fa_appid',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "fa_appid"';
+		$this->db->sql_query($sql);
+
+		$sql_ary = [
+			'config_name' => 'cmi_favicon_enable',
+		];
+
+		$sql = 'UPDATE ' . $this->table_prefix . 'config
+				SET ' . $this->db->sql_build_array('UPDATE', $sql_ary) . '
+				WHERE config_name = "favicon_enable"';
+		$this->db->sql_query($sql);
+	}
+	public function revert_data()
+	{
+		return [
+			['config.remove', ['cmi_meta_title']],
+			['config.remove', ['cmi_mt_change']],
+			['config.remove', ['cmi_meta_description']],
+			['config.remove', ['cmi_meta_keywords']],
+			['config.remove', ['cmi_meta_google_site_verification']],
+			['config.remove', ['cmi_meta_google_site_verification_enable']],
+			['config.remove', ['cmi_meta_open_graph_enable']],
+			['config.remove', ['cmi_meta_og_url']],
+			['config.remove', ['cmi_meta_og_description']],
+			['config.remove', ['cmi_meta_og_locale']],
+			['config.remove', ['cmi_fa_appid_enable']],
+			['config.remove', ['cmi_fa_appid']],
+			['config.remove', ['cmi_favicon_enable']],
+		];
+	}	
+
+	
 }
