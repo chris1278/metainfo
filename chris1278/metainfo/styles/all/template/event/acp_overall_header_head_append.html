@@ -1,32 +1,35 @@
-	<meta name="description" content="{{ CMI_META_DESCRIPTION }}" />
-	<meta name="keywords" content="{{ CMI_META_KEYWORDS }}" />
+<!--
+<title>{% if CMI_MT_CHANGE %}{{ CMI_META_TITLE }} {% else %} {{ SITENAME }} {% endif %}</title>
+-->
+<meta name="description" content="{{ CMI_META_DESCRIPTION }}" />
+<meta name="keywords" content="{{ CMI_META_KEYWORDS }}" />
 {% if CMI_META_GOOGLE_SITE_VERIFICATION_ENABLE %}
-	<meta name="google-site-verification" content="{{ CMI_META_GOOGLE_SITE_VERIFICATION }}" />
+<meta name="google-site-verification" content="{{ CMI_META_GOOGLE_SITE_VERIFICATION }}" />
 {% endif %}
 
 {% if CMI_FAVICON_ENABLE %}
-	<link rel="apple-touch-icon" sizes="180x180" href="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png">
-	<link rel="mask-icon" href="{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg" color="#5bbad5">
-	<link rel="shortcut icon" href="{{ T_EXT_FAVICON_PATH }}/favicon.ico">
-	<meta name="msapplication-TileImage" content="{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png">
-	<link rel="manifest" href="{{ T_EXT_FAVINFO_PATH }}/site.webmanifest">
-	<meta name="msapplication-TileColor" content="#da532c">
-	<meta name="msapplication-config" content="{{ T_EXT_FAVINFO_PATH }}/browserconfig.xml">
-	<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ T_EXT_FAVICON_PATH }}/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ T_EXT_FAVICON_PATH }}/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ T_EXT_FAVICON_PATH }}/favicon-16x16.png">
+<link rel="mask-icon" href="{{ T_EXT_FAVICON_PATH }}/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="{{ T_EXT_FAVICON_PATH }}/favicon.ico">
+<meta name="msapplication-TileImage" content="{{ T_EXT_FAVICON_PATH }}/ms-icon-144x144.png">
+<link rel="manifest" href="{{ T_EXT_FAVINFO_PATH }}/site.webmanifest">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="{{ T_EXT_FAVINFO_PATH }}/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
 {% endif %}
 
 {% if CMI_META_OPEN_GRAPH_ENABLE %}
-	<meta property="og:locale" content="{{ CMI_META_OG_LOCALE }}" />
-	<meta property="og:type" content="website" />
-	<meta property="og:description" content="{{ CMI_META_OG_DESCRIPTION }}" />
-	<meta property="og:title" content="{% if CMI_META_OG_URL %} {{ lang('ADMIN_INDEX') }} {% else %} {{ PAGE_TITLE }}{% endif %} "/>
-	<meta property="og:url" content="{% if CMI_META_OG_URL %} {{ U_ADM_INDEX }}{% else %} {{ U_ADM_INDEX }} {% endif %}" />
-	<meta property="og:site_name" content="{{ ACP_SITENAME }}" />
-	<meta property="og:image" content="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg" />
+<meta property="og:locale" content="{{ CMI_META_OG_LOCALE }}" />
+<meta property="og:type" content="website" />
+<meta property="og:description" content="{{ CMI_META_OG_DESCRIPTION }}" />
+<meta property="og:title" content="{{ PAGE_TITLE }}" />
+<meta property="og:url" content="{% if CMI_META_OG_URL %} {{ ACP_BOARD_URL }}adm/index.php {% else %} {% if SCRIPT_NAME == 'index' %} {{ ACP_BOARD_URL }}adm/index.php {% else %} {{ lang('ERROR_ACP_DYN') }} {% endif %} {% endif %}" />
+<meta property="og:site_name" content="{{ ACP_SITENAME }}" />
+<meta property="og:image" content="{{ T_EXT_FAVICON_PATH }}/facebook-og-image.jpg" />
 {% if CMI_FA_APPID_ENABLE %}
-	<meta property="fb:app_id" content="{{ CMI_FA_APPID }}"/>
+<meta property="fb:app_id" content="{{ CMI_FA_APPID }}"/>
 {% endif %}
 {% endif %}
 
